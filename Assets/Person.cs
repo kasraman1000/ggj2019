@@ -14,19 +14,19 @@ public class Person : MonoBehaviour {
     void Update() {
         var moveDir = Vector2.zero;
         
-        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+        if (Input.GetKey(KeyCode.UpArrow)) {
             moveDir = moveDir + Vector2.up;
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow)) {
+        if (Input.GetKey(KeyCode.DownArrow)) {
             moveDir = moveDir + Vector2.down;
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+        if (Input.GetKey(KeyCode.LeftArrow)) {
             moveDir = moveDir + Vector2.left;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow)) {
+        if (Input.GetKey(KeyCode.RightArrow)) {
             moveDir = moveDir + Vector2.right;
         }
 
-        transform.position += (Vector3) moveDir * speed;
+        transform.position += (Vector3) moveDir * speed * Time.deltaTime;
     }
 }
