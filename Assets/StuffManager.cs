@@ -6,13 +6,15 @@ using UnityEngine;
 [CreateAssetMenu]
 public class StuffManager : ScriptableObject {
     [SerializeField]
-    StuffTemplate[] stuffList;
+    StuffTemplate[] _stuffList;
     
     [SerializeField]
     Stuff stuffPrefab;
 
+    public StuffTemplate[] stuffList => _stuffList;
+
     public Stuff makeRandomStuff() {
-        var stuffToMake = stuffList[Random.Range(0, stuffList.Length-1)];
+        var stuffToMake = _stuffList[Random.Range(0, _stuffList.Length-1)];
         
         var result = GameObject.Instantiate(stuffPrefab);
         

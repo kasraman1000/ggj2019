@@ -11,6 +11,7 @@
         <e p="Stuff.cs" t="Include" />
         <e p="StuffManager.cs" t="Include" />
         <e p="StuffTemplate.cs" t="Include" />
+        <e p="StuffTester.cs" t="Include" />
       </e>
       <e p="ggj2019.sln" t="IncludeFlat" />
       <e p="Library" t="ExcludeRecursive" />
