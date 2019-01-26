@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e478aeb4-8d81-4e67-9d4e-7650d6145ddb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Person.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Person.cs" afterDir="false" />
-    </list>
+    <list default="true" id="e478aeb4-8d81-4e67-9d4e-7650d6145ddb" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +12,7 @@
     <session id="640648263">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="13" />
+          <entry key="project.closed" value="14" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="4" />
           <entry key="project.open.time.8" value="6" />
@@ -313,12 +311,12 @@
       <workItem from="1548520501143" duration="1757000" />
       <workItem from="1548522315384" duration="1791000" />
       <workItem from="1548524154186" duration="1794000" />
-      <workItem from="1548525994593" duration="730000" />
+      <workItem from="1548525994593" duration="1352000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20648000" />
+    <option name="totallyTimeSpent" value="21270000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
