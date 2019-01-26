@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca63dbc488852147bcf7e9da5acf876, type: 3}
   m_Name: THE STUFF MANAGER HAHAHAHHAHAHA
   m_EditorClassIdentifier: 
-  stuffList:
+  _stuffList:
   - {fileID: 11400000, guid: dcd9537c49fd80e49af3a74d3cb85ff1, type: 2}
   - {fileID: 11400000, guid: d33044e5dee04bd47bb8884b7c7e00a2, type: 2}
   - {fileID: 11400000, guid: 4618ef9e3163eb046a679e73130d6f48, type: 2}

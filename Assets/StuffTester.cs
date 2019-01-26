@@ -3,6 +3,7 @@
 using UnityEditor;
 using UnityEngine;
 
+[CustomEditor(typeof(StuffTester))]
 public class StuffTesterEditor : Editor {
     StuffTester obj;
 
@@ -11,17 +12,19 @@ public class StuffTesterEditor : Editor {
     }
 
     public override void OnInspectorGUI() {
-        base.OnInspectorGUI();
+        DrawDefaultInspector();
 
-        foreach (var VARIABLE in ) {
-            
+        foreach (var stuffTemplate in obj.stuffManager.stuffList) {
+            if (GUILayout.Button(stuffTemplate.name)) {
+                obj.stuffManager.makeStuff(stuffTemplate);
+            }
         }
     }
 }
 
 public class StuffTester : MonoBehaviour {
 
-    [SerializeField] StuffManager stuffManager;
+    public StuffManager stuffManager;
 
     
 
