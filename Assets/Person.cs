@@ -73,8 +73,6 @@ public class Person : MonoBehaviour {
                 var hit = Physics2D.Raycast(transform.position, facingDir, PickupDistance,
                     layerMask); // This is inefficient layermask stuff lul
 
-                Debug.Log(hit.collider, hit.collider.gameObject);
-                
                 if (hit.collider != null) {
                     var stuff = hit.collider.gameObject.GetComponent<Stuff>();
                     

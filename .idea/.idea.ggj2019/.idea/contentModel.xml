@@ -6,8 +6,12 @@
     <e p="C:\Users\Kasra\Desktop\ggj2019actualfolder\ggj2019" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="GameplayManager.cs" t="Include" />
         <e p="Person.cs" t="Include" />
         <e p="Stuff.cs" t="Include" />
+        <e p="StuffManager.cs" t="Include" />
+        <e p="StuffTemplate.cs" t="Include" />
+        <e p="StuffTester.cs" t="Include" />
       </e>
       <e p="ggj2019.sln" t="IncludeFlat" />
       <e p="Library" t="ExcludeRecursive" />
