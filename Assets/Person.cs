@@ -140,7 +140,7 @@ public class Person : MonoBehaviour {
         Holding.transform.position = transform.position + offset;
         body.velocity = ThrowVelocity * FacingDirection;
 
-        var collider = Holding.GetComponent<PolygonCollider2D>();
+        var collider = Holding.GetComponent<Collider>();
         collider.enabled = true;
 
         Holding = null;
@@ -149,7 +149,7 @@ public class Person : MonoBehaviour {
     private void pickUpStuff(Stuff stuff) {
         Holding = stuff;
 
-        var collider = Holding.GetComponent<PolygonCollider2D>();
+        var collider = Holding.GetComponent<Collider>();
         collider.enabled = false;
 
         var body = Holding.GetComponent<Rigidbody2D>();
@@ -165,7 +165,7 @@ public class Person : MonoBehaviour {
         Holding.transform.SetParent(null);
         Holding.transform.position = transform.position + (Vector3)FacingDirection * PickupDistance;
 
-        var collider = Holding.GetComponent<PolygonCollider2D>();
+        var collider = Holding.GetComponent<Collider>();
         collider.enabled = true;
 
         Holding = null;
