@@ -6,22 +6,22 @@ using UnityEditor;
 
 public class House : MonoBehaviour {
     [SerializeField]
-    private Wall North;
+    private Wall North = null;
 
     [SerializeField]
-    private Wall South;
+    private Wall South = null;
 
     [SerializeField]
-    private Wall West;
+    private Wall West = null;
 
     [SerializeField]
-    private Wall NorthEast;
+    private Wall NorthEast = null;
 
     [SerializeField]
-    private Wall SouthEast;
+    private Wall SouthEast = null;
 
     [SerializeField]
-    private Floor Floor;
+    private Floor Floor = null;
 
     // Start is called before the first frame update
     void Start() {

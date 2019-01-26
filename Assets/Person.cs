@@ -18,7 +18,7 @@ public class Person : MonoBehaviour {
     [Header("Gameobject references")]
 
     [SerializeField]
-    Transform StuffHoldingAnchor;
+    Transform StuffHoldingAnchor = null;
 
     Vector2 FacingDirection;
 

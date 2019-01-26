@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8339498580960684387}
   - component: {fileID: 8339498580960684396}
   - component: {fileID: 8339498580960684397}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Person
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8339498581202619969}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Stuff Holding Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
