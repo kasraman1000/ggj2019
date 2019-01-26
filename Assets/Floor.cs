@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class Wall : MonoBehaviour
-{
+public class Floor : MonoBehaviour {
     private SpriteRenderer Sprite;
 
     // Start is called before the first frame update
     void Start() {
         Sprite = GetComponent<SpriteRenderer>();
     }
-    
+
     public void Grow(Vector2 delta) {
         Vector2 growth = new Vector2(
             Mathf.Abs(delta.x),
