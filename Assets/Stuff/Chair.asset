@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 720f853e5c00c624cb5a0bcaea8b4118, type: 3}
   m_Name: Chair
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: d9779ef19dc1e494ba573090a60af00f, type: 3}
-  size: {x: 1, y: 1}
+  sprite: {fileID: 21300000, guid: 3dfcb94e635d32a46822ec84f3c2d4e2, type: 3}
+  sizeMultiplier: 1

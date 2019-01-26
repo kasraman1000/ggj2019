@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca63dbc488852147bcf7e9da5acf876, type: 3}
-  m_Name: THE STUFF MANAGER HAHAHAHHAHAHA
+  m_Name: _Stuffmanager
   m_EditorClassIdentifier: 
   _stuffList:
+  - {fileID: 11400000, guid: d3beb0313cb14824ca54b6968634639e, type: 2}
   - {fileID: 11400000, guid: dcd9537c49fd80e49af3a74d3cb85ff1, type: 2}
   - {fileID: 11400000, guid: d33044e5dee04bd47bb8884b7c7e00a2, type: 2}
+  - {fileID: 11400000, guid: 610df50d003032b4d9f1b00d80ac72a5, type: 2}
   - {fileID: 11400000, guid: 4618ef9e3163eb046a679e73130d6f48, type: 2}
   stuffPrefab: {fileID: 3213062411915885498, guid: 9079fb8bd39255a43808ddf6838450cd,
     type: 3}
