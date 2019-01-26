@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1058654893342020779}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children:
   - {fileID: 1058654893378203789}
   m_Father: {fileID: 0}
@@ -93,9 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d5be63047cf1347920b614af7a895d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2
-  HoverFrequency: 2
-  HoverAmplitude: 1
+  Speed: 8
+  HoverFrequency: 3
+  HoverAmplitude: 1.5
   StuffHoldingAnchor: {fileID: 1058654893378203789}
 --- !u!1 &1058654893378203778
 GameObject:

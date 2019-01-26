@@ -23,6 +23,8 @@ public class Drone : MonoBehaviour
     float dropX;
     float removeX;
 
+    float startTime;
+    
     void OnValidate() {
         if (StuffHoldingAnchor == null) {
             Debug.LogError("no stuffholdingachor assigned", this);
@@ -31,12 +33,13 @@ public class Drone : MonoBehaviour
     
     void Start() {
         baseY = transform.position.y;
+        startTime = Time.time;
     }
 
     void Update() {
         var pos = transform.position;
         pos.x -= Speed * Time.deltaTime;
-        pos.y = baseY + (HoverAmplitude * Mathf.Sin(HoverFrequency * Time.time));
+        pos.y = baseY + (HoverAmplitude * Mathf.Sin(HoverFrequency * Time.time - startTime));
         transform.position = pos;
 
         if (Holding != null && transform.position.x <= dropX) {

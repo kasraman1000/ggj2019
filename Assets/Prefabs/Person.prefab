@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b89bcd34bee2bc0408f7676b61f6db00, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3ef5cef0c0d0f64cb225d17b094ad73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,6 +98,15 @@ MonoBehaviour:
   ThrowVelocity: 20
   PlayerRadius: 0.1
   StuffHoldingAnchor: {fileID: 8339498581202619969}
+  sprites_front:
+    normal: {fileID: 21300000, guid: f3ef5cef0c0d0f64cb225d17b094ad73, type: 3}
+    carry: {fileID: 21300000, guid: fec11fdc73946bb40912a41316dc170c, type: 3}
+  sprites_back:
+    normal: {fileID: 21300000, guid: dd5e554f0ec8c914382c92f98fcdae2d, type: 3}
+    carry: {fileID: 21300000, guid: 978e267dfca15074488bc6eaa572f2c7, type: 3}
+  sprites_side:
+    normal: {fileID: 21300000, guid: bd86c220a475ad64f924ef162726c140, type: 3}
+    carry: {fileID: 21300000, guid: 9e7c1e032572d3144ae8bda1ee276ffb, type: 3}
 --- !u!1 &8339498581202619970
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8339498581202619970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.029, y: 0.531, z: 0.10181284}
+  m_LocalPosition: {x: 0.029, y: 4.02, z: 0.10181284}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8339498580960684387}

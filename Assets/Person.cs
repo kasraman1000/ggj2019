@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Person : MonoBehaviour {
 
@@ -20,9 +21,27 @@ public class Person : MonoBehaviour {
     [SerializeField]
     Transform StuffHoldingAnchor;
 
+    [Serializable]
+    public struct SpriteTuple {
+        public Sprite normal;
+        public Sprite carry;
+    }
+
+    [Header("Sprites references")] 
+    [SerializeField]
+    SpriteTuple sprites_front;
+    [SerializeField] 
+    SpriteTuple sprites_back;
+    [SerializeField] 
+    SpriteTuple sprites_side;
+    
+    SpriteRenderer spriteRenderer;
+    SpriteTuple currentSpriteTuple;
+    
     Vector2 FacingDirection;
 
     Stuff Holding;
+    float HoldingPrevZ;
 
     void OnValidate() {
         if (StuffHoldingAnchor == null) {
@@ -32,7 +51,8 @@ public class Person : MonoBehaviour {
 
 
     private void Start() {
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        currentSpriteTuple = sprites_front;
     }
 
     private void Move(Vector2 direction, float distance) {
@@ -77,6 +97,7 @@ public class Person : MonoBehaviour {
 
         float distance = Speed * Time.deltaTime;
         Move(moveDir, distance);
+        
 
         if (moveDir != Vector2.zero) {
             FacingDirection = moveDir;
@@ -87,17 +108,12 @@ public class Person : MonoBehaviour {
 
 
                 if (moveDir == Vector2.zero) {
-                    // put stuff down
                     putDownStuff();
                 } else {
                     throwStuff();
                 }
 
             } else {
-                // pick stuff up
-
-                // step 1 find stuff :D
-
                 int layerMask = LayerMask.GetMask("Stuff");
 
                 var hit = Physics2D.Raycast(transform.position, FacingDirection, PickupDistance,
@@ -111,6 +127,36 @@ public class Person : MonoBehaviour {
                     pickUpStuff(stuff);
                 }
             }
+        }
+        
+        changeSprite(moveDir, Holding != null);
+        
+        if (moveDir != Vector2.zero && Holding != null) {
+            var pos = Holding.transform.position;
+            pos.z = transform.position.z + (moveDir.y > 0 ? float.Epsilon : -float.Epsilon);
+            Holding.transform.position = pos;
+        }
+    }
+
+    void changeSprite(Vector2 moveDir, bool isHolding) {
+        if (moveDir.y > 0) {
+            currentSpriteTuple = sprites_back;
+        } else if (moveDir.y < 0) {
+            currentSpriteTuple = sprites_front;
+        } else if (moveDir != Vector2.zero) {
+            currentSpriteTuple = sprites_side;
+        }
+
+        if (moveDir != Vector2.zero) {
+            spriteRenderer.flipX = moveDir.x > 0;
+        }
+        
+        Sprite spriteToSet;
+        
+        spriteToSet = isHolding ? currentSpriteTuple.carry : currentSpriteTuple.normal;
+
+        if (spriteRenderer.sprite != spriteToSet) {
+            spriteRenderer.sprite = spriteToSet;            
         }
     }
 
@@ -148,6 +194,7 @@ public class Person : MonoBehaviour {
 
     private void pickUpStuff(Stuff stuff) {
         Holding = stuff;
+        HoldingPrevZ = stuff.transform.position.z;
 
         var collider = Holding.GetComponent<Collider2D>();
         collider.enabled = false;
@@ -159,12 +206,12 @@ public class Person : MonoBehaviour {
         stuff.transform.localPosition = Vector2.zero;
     }
 
-
-
     private void putDownStuff() {
         Holding.transform.SetParent(null);
-        Holding.transform.position = transform.position + (Vector3)FacingDirection * PickupDistance;
-
+        var holdingNewPos = transform.position + (Vector3)FacingDirection * PickupDistance;
+        holdingNewPos.z = HoldingPrevZ;
+        Holding.transform.position = holdingNewPos;
+        
         var collider = Holding.GetComponent<Collider2D>();
         collider.enabled = true;
 
