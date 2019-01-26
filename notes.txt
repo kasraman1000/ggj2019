@@ -1,0 +1,15 @@
+hoarding simulator
+
+3rd person
+2d graphics
+top view
+chess-board "cells", think pokemon
+free movement
+
+1st step - ghost mode
+2st step - block collision
+3rd step - pushable objects
+
+maybe have floors effects
+
+
