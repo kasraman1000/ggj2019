@@ -1,15 +1,12 @@
-﻿
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu]
 public class StuffManager : ScriptableObject {
     [SerializeField]
-    StuffTemplate[] _stuffList;
-    
+    StuffTemplate[] _stuffList = null;
+
     [SerializeField]
-    Stuff stuffPrefab;
+    Stuff stuffPrefab = null;
 
     public StuffTemplate[] stuffList => _stuffList;
 

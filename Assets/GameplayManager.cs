@@ -1,55 +1,77 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameplayManager : MonoBehaviour {
 
-    [Header("Configs")]    
-    public float delay = 5f;
+    [Header("Configs")]
+    [SerializeField] float DroneDelay = 5f;
+    float DroneTimer = 0f;
+
+    [SerializeField] float CarDelay = 5f;
+    float CarTimer = 0f;
 
     [Header("Scene References")]
-    [SerializeField] Transform DroneSpawnPoint1;
-    [SerializeField] Transform DroneSpawnPoint2;
-    [SerializeField] Transform DroneDropoffLine;
-    
-    
-    [Header("Prefabs ect.")]
-    [SerializeField] StuffManager stuffManager;
-    [SerializeField] Drone dronePrefab;
-    
-    
-    float timer = 0;
-    
-    void OnValidate() {
-        if (DroneSpawnPoint1 == null &&
-            DroneSpawnPoint2== null &&
-            DroneDropoffLine == null) {
-            Debug.LogError("Missing Scene Reference", this);
-        }
+    [SerializeField] Transform DroneSpawnPoint1 = null;
+    [SerializeField] Transform DroneSpawnPoint2 = null;
+    [SerializeField] Transform DroneDropoffLine = null;
 
-        if (stuffManager == null) {
-            Debug.LogError("Missing stuffmanager", this);            
-        }
-        
-        if (dronePrefab == null) {
-            Debug.LogError("Missing drone prefab", this);            
-        }
+
+    [Header("Prefabs ect.")]
+    [SerializeField] StuffManager stuffManager = null;
+    [SerializeField] Drone dronePrefab = null;
+
+    [SerializeField] CarSpawner CarSpawner = null;
+    [SerializeField] House House = null;
+
+    void OnValidate() {
+        AssertNotNull(DroneSpawnPoint1, nameof(DroneSpawnPoint1));
+        AssertNotNull(DroneSpawnPoint2, nameof(DroneSpawnPoint2));
+        AssertNotNull(DroneDropoffLine, nameof(DroneDropoffLine));
+        AssertNotNull(stuffManager, nameof(stuffManager));
+        AssertNotNull(dronePrefab, nameof(dronePrefab));
+        AssertNotNull(CarSpawner, nameof(CarSpawner));
+        AssertNotNull(House, nameof(House));
     }
-    
-    
+
+    private void AssertNotNull(object value, string name) {
+        Debug.Assert(value != null, string.Format("Missing '{0}'", name), this.gameObject);
+    }
+
     // Update is called once per frame
     void Update() {
-        timer += Time.deltaTime;
+        UpdateDrones();
+        UpdateCars();
+    }
 
-        if (timer > delay) {
-            timer -= delay;
+    void UpdateDrones() {
+        DroneTimer += Time.deltaTime;
 
-            var stuff = stuffManager.makeRandomStuff();
-            var dronePos = Vector2.Lerp(DroneSpawnPoint1.position, DroneSpawnPoint2.position, Random.Range(0f, 1f));
-            var drone = Instantiate(dronePrefab, dronePos, Quaternion.identity);
-            drone.deliverStuff(stuff, DroneDropoffLine.position.x);
-            drone.setRemoveX(-200); // TODO set proper dynamic drone kill zone
-
+        if (DroneTimer < DroneDelay) {
+            return;
         }
+
+        DroneTimer -= DroneDelay;
+
+        var stuff = stuffManager.makeRandomStuff();
+        var dronePos = Vector2.Lerp(DroneSpawnPoint1.position, DroneSpawnPoint2.position, Random.Range(0f, 1f));
+        var drone = Instantiate(dronePrefab, dronePos, Quaternion.identity);
+        drone.deliverStuff(stuff, DroneDropoffLine.position.x);
+        drone.setRemoveX(-200); // TODO set proper dynamic drone kill zone
+    }
+
+    void UpdateCars() {
+        CarTimer += Time.deltaTime;
+
+        if (CarTimer < CarDelay) {
+            return;
+        }
+
+        CarTimer -= CarDelay;
+
+        Car car = CarSpawner.SpawnCar();
+        car.OnCollision = OnCarCollision;
+    }
+
+    private void OnCarCollision(Collision2D collision) {
+        Debug.LogWarning("Car collided! OH NOES!!");
     }
 }

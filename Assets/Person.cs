@@ -19,7 +19,7 @@ public class Person : MonoBehaviour {
     [Header("Gameobject references")]
 
     [SerializeField]
-    Transform StuffHoldingAnchor;
+    Transform StuffHoldingAnchor = null;
 
     [Serializable]
     public struct SpriteTuple {
