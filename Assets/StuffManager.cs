@@ -21,10 +21,14 @@ public class StuffManager : ScriptableObject {
 
     public Stuff makeStuff(StuffTemplate stuffToMake) {
         var result = GameObject.Instantiate(stuffPrefab);
-
         result.GetComponent<SpriteRenderer>().sprite = stuffToMake.sprite;
-        result.transform.localScale = stuffToMake.size;
+        result.transform.localScale = result.transform.localScale * stuffToMake.sizeMultiplier;
         result.gameObject.AddComponent<PolygonCollider2D>();
+        result.name = stuffToMake.name;
+
+#if UNITY_EDITOR
+        result.template = stuffToMake;
+#endif
 
         return result;
     }

@@ -5,9 +5,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class StuffTemplate : ScriptableObject {
     public Sprite sprite;
-    public Vector2 size = Vector2.one;
+    public float sizeMultiplier = 1;
     
     // pushable? Wieght? etc?
-
 
 }
