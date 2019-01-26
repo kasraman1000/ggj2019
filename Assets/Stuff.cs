@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -17,12 +17,17 @@ public class StuffEditor : Editor{
 }
 #endif
 
-public class Stuff : MonoBehaviour
-{
+public class Stuff : MonoBehaviour {
+    private float GizmoRadius = 0.1f;
+
+    private void OnDrawGizmos() {
+        Gizmos.DrawSphere(transform.position, GizmoRadius);
+
+    }
+
 #if UNITY_EDITOR
     public StuffTemplate template;
-    
-#endif
 
+#endif
 
 }

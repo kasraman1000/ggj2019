@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 8339498580960684387}
   - component: {fileID: 8339498580960684396}
   - component: {fileID: 8339498580960684397}
-  - component: {fileID: 8339498580960684386}
-  - component: {fileID: 8339498580960684385}
   m_Layer: 0
   m_Name: Person
   m_TagString: Untagged
@@ -97,89 +95,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   PickupDistance: 1
-  stuffHoldingAnchor: {fileID: 8339498581202619969}
---- !u!60 &8339498580960684386
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8339498580960684398}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8, y: 0.99}
-    newSize: {x: 2.3, y: 1.96}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.39, y: 0.105}
-      - {x: 0.32, y: 0.074999996}
-      - {x: 0.22999999, y: 0.375}
-      - {x: 0.39999998, y: 0.42499998}
-      - {x: 0.38, y: 0.45499998}
-      - {x: 0.35, y: 0.465}
-      - {x: 0.24, y: 0.45499998}
-      - {x: 0.17, y: 0.49499997}
-      - {x: -0.14, y: 0.49499997}
-      - {x: -0.29, y: 0.465}
-      - {x: -0.39, y: 0.45499998}
-      - {x: -0.26999998, y: 0.325}
-      - {x: -0.24, y: 0.125}
-      - {x: -0.22, y: 0.085}
-      - {x: -0.19, y: 0.035}
-      - {x: -0.17, y: -0.035}
-      - {x: -0.35999998, y: 0.145}
-      - {x: -0.39999998, y: 0.13499999}
-      - {x: -0.39999998, y: 0.085}
-      - {x: -0.22999999, y: -0.095}
-      - {x: -0.11, y: -0.114999995}
-      - {x: -0.099999994, y: -0.315}
-      - {x: -0.049999997, y: -0.415}
-      - {x: 0.07, y: -0.285}
-      - {x: 0.099999994, y: -0.465}
-      - {x: 0.13, y: -0.48499998}
-      - {x: 0.19, y: -0.48499998}
-      - {x: 0.22, y: -0.13499999}
-      - {x: 0.39999998, y: 0.044999998}
-      - {x: 0.39999998, y: 0.095}
-    - - {x: -0.07, y: -0.445}
-      - {x: -0.049999997, y: -0.465}
-      - {x: -0.02, y: -0.45499998}
-      - {x: -0.02, y: -0.42499998}
-      - {x: -0.04, y: -0.405}
-      - {x: -0.07, y: -0.415}
---- !u!50 &8339498580960684385
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8339498580960684398}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+  ThrowVelocity: 20
+  PlayerRadius: 0.1
+  StuffHoldingAnchor: {fileID: 8339498581202619969}
 --- !u!1 &8339498581202619970
 GameObject:
   m_ObjectHideFlags: 0
