@@ -27,21 +27,23 @@ public class Person : MonoBehaviour {
         public Sprite carry;
     }
 
-    [Header("Sprites references")] 
+    [Header("Sprites references")]
     [SerializeField]
     SpriteTuple sprites_front = default;
-    [SerializeField] 
+    [SerializeField]
     SpriteTuple sprites_back = default;
-    [SerializeField] 
+    [SerializeField]
     SpriteTuple sprites_side = default;
-    
+
     SpriteRenderer spriteRenderer;
     SpriteTuple currentSpriteTuple;
-    
+
     Vector2 FacingDirection;
 
     Stuff Holding;
     float HoldingPrevZ;
+
+    private Highlight Highlight;
 
     void OnValidate() {
         if (StuffHoldingAnchor == null) {
@@ -75,6 +77,23 @@ public class Person : MonoBehaviour {
         Gizmos.DrawLine(transform.position, transform.position + (Vector3)FacingDirection * PickupDistance);
     }
 
+    private Stuff GetPickupTarget() {
+        int layerMask = LayerMask.GetMask("Stuff");
+
+        var hit = Physics2D.Raycast(transform.position, FacingDirection, PickupDistance,
+            layerMask); // This is inefficient layermask stuff lul
+
+        if (hit.collider == null) {
+            return null;
+        }
+
+        var stuff = hit.collider.gameObject.GetComponent<Stuff>();
+
+        Debug.Assert(stuff != null);
+
+        return stuff;
+    }
+
     private void Update() {
 
         var moveDir = Vector2.zero;
@@ -97,40 +116,44 @@ public class Person : MonoBehaviour {
 
         float distance = Speed * Time.deltaTime;
         Move(moveDir, distance);
-        
+
 
         if (moveDir != Vector2.zero) {
             FacingDirection = moveDir;
         }
 
+        Highlight?.SetHighlight(enabled: false);
+
+        Stuff target = null;
+
+        if (Holding == null) {
+            target = GetPickupTarget();
+
+            Highlight = target?.GetComponent<Highlight>();
+
+        }
+
+        if (Highlight != null) {
+            Highlight.SetHighlight(enabled: true);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (Holding != null) {
-
-
                 if (moveDir == Vector2.zero) {
                     putDownStuff();
                 } else {
                     throwStuff();
                 }
 
-            } else {
-                int layerMask = LayerMask.GetMask("Stuff");
-
-                var hit = Physics2D.Raycast(transform.position, FacingDirection, PickupDistance,
-                    layerMask); // This is inefficient layermask stuff lul
-
-                if (hit.collider != null) {
-                    var stuff = hit.collider.gameObject.GetComponent<Stuff>();
-
-                    Debug.Assert(stuff != null);
-
-                    pickUpStuff(stuff);
-                }
+            } else if (target != null) {
+                pickUpStuff(target);
+                Highlight.SetHighlight(enabled: false);
+                Highlight = null;
             }
         }
-        
+
         changeSprite(moveDir, Holding != null);
-        
+
         if (moveDir != Vector2.zero && Holding != null) {
             var pos = Holding.transform.position;
             pos.z = transform.position.z + (moveDir.y > 0 ? float.Epsilon : -float.Epsilon);
@@ -150,13 +173,13 @@ public class Person : MonoBehaviour {
         if (moveDir != Vector2.zero) {
             spriteRenderer.flipX = moveDir.x > 0;
         }
-        
+
         Sprite spriteToSet;
-        
+
         spriteToSet = isHolding ? currentSpriteTuple.carry : currentSpriteTuple.normal;
 
         if (spriteRenderer.sprite != spriteToSet) {
-            spriteRenderer.sprite = spriteToSet;            
+            spriteRenderer.sprite = spriteToSet;
         }
     }
 
@@ -174,7 +197,7 @@ public class Person : MonoBehaviour {
 
         if (FacingDirection.y < 0) {
             offsetY -= renderer.bounds.extents.y * 2;
-        } 
+        }
         /*
         else if (FacingDirection.y < 0) {
             offsetY += sprite.bounds.extents.y * 0,
@@ -211,7 +234,7 @@ public class Person : MonoBehaviour {
         var holdingNewPos = transform.position + (Vector3)FacingDirection * PickupDistance;
         holdingNewPos.z = HoldingPrevZ;
         Holding.transform.position = holdingNewPos;
-        
+
         var collider = Holding.GetComponent<Collider2D>();
         collider.enabled = true;
 
