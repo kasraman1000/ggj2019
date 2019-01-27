@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: phone
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 5784800439e9bbb44bfb9d30785a27df, type: 3}
-  sizeMultiplier: 1
+  sizeMultiplier: 0.3

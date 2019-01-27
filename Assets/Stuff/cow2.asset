@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: cow2
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: f49e3d28ee3affa4886e2e4f62513873, type: 3}
-  sizeMultiplier: 1
+  sizeMultiplier: 1.2

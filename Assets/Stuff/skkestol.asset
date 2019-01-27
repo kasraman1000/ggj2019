@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: skkestol
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: d8f0211a5608b8d46b3b0ebb996552d5, type: 3}
-  sizeMultiplier: 1
+  sizeMultiplier: 0.6

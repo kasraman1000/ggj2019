@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: shitpotte
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 2903a07a9d5ac3e4ab3dddba7874b714, type: 3}
-  sizeMultiplier: 1
+  sizeMultiplier: 0.4

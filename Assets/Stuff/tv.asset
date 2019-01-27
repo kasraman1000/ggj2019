@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: tv
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 1a6b726d4d54f464ebea3a6d084aa729, type: 3}
-  sizeMultiplier: 1
+  sizeMultiplier: 0.5
