@@ -5,6 +5,8 @@ public class Wall : MonoBehaviour
 {
     private SpriteRenderer Sprite;
 
+    public Bounds bounds => Sprite.bounds;
+    
     // Start is called before the first frame update
     void Start() {
         Sprite = GetComponent<SpriteRenderer>();

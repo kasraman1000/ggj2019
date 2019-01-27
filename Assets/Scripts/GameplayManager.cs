@@ -1,26 +1,33 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class GameplayManager : MonoBehaviour {
 
-    [Header("Configs")]
-    [SerializeField] float DroneDelay = 5f;
+    [Header("Configs")] [SerializeField] float DroneDelay = 5f;
     float DroneTimer = 0f;
 
     [SerializeField] float CarDelay = 5f;
     float CarTimer = 0f;
 
-    [Header("Scene References")]
-    [SerializeField] Transform DroneSpawnPoint1 = null;
+    [Header("Scene References")] [SerializeField]
+    Transform DroneSpawnPoint1 = null;
+
     [SerializeField] Transform DroneSpawnPoint2 = null;
     [SerializeField] Transform DroneDropoffLine = null;
 
 
-    [Header("Prefabs ect.")]
-    [SerializeField] StuffManager stuffManager = null;
+    [Header("Prefabs ect.")] [SerializeField]
+    StuffManager stuffManager = null;
+
     [SerializeField] Drone dronePrefab = null;
 
     [SerializeField] CarSpawner CarSpawner = null;
     [SerializeField] House House = null;
+    [SerializeField] CameraManager cameraManager = null;
+    [SerializeField] Person person = null;
+
+    bool paused;
+
 
     void OnValidate() {
         AssertNotNull(DroneSpawnPoint1, nameof(DroneSpawnPoint1));
@@ -36,8 +43,16 @@ public class GameplayManager : MonoBehaviour {
         Debug.Assert(value != null, string.Format("Missing '{0}'", name), this.gameObject);
     }
 
+    void Awake() {
+        cameraManager.followObject(person.gameObject);
+    }
+
     // Update is called once per frame
     void Update() {
+        if (Input.GetKeyDown(KeyCode.A)) {
+            expandHouse();
+        }
+        
         UpdateDrones();
         UpdateCars();
     }
@@ -74,4 +89,57 @@ public class GameplayManager : MonoBehaviour {
     private void OnCarCollision(Collision2D collision) {
         Debug.LogWarning("Car collided! OH NOES!!");
     }
+
+    [ContextMenu("expandHouse")]
+    void expandHouse() {
+        StartCoroutine(expandHouseRoutine());
+    }
+
+    IEnumerator expandHouseRoutine() {
+        const float growSize = 5;
+        
+        pauseWorld(true);
+
+        var houseBounds = House.houseBounds;
+        houseBounds.Expand(growSize);
+        var camHeight = houseBounds.extents.y;
+        
+        cameraManager.lerpTo(houseBounds.center, 2f);
+        cameraManager.zoomToSize(camHeight, 2f);
+        
+        yield return new WaitForSecondsRealtime(3f);
+
+        switch (Random.Range(0, 3)) {
+            case 0: House.ExpandNorth(growSize); break;
+            case 1: House.ExpandWest(growSize); break;
+            case 2: House.ExpandSouth(growSize); break;
+        }
+        
+        yield return new WaitForSecondsRealtime(1.5f);
+        
+        cameraManager.resetZoom(2f);
+        cameraManager.lerpTo(person.transform.position, 2f);
+        
+        yield return new WaitForSecondsRealtime(3f);
+        
+        cameraManager.followObject(person.gameObject);
+        pauseWorld(false);
+    }
+
+    void pauseWorld(bool pause) {
+        Time.timeScale = pause ? 0 : 1;
+
+//        paused = pause;
+//        person.enabled = !pause;
+//
+//        var drones = GameObject.FindObjectsOfType<Drone>();
+//        foreach (var drone in drones) {
+//            drone.enabled = !pause;
+//        }
+//
+//        foreach (var car in GameObject.FindObjectsOfType<Car>()) {
+//            car.enabled = !pause;
+//        }
+    }
+
 }
