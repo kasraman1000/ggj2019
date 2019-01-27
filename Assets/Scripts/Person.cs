@@ -29,11 +29,11 @@ public class Person : MonoBehaviour {
 
     [Header("Sprites references")] 
     [SerializeField]
-    SpriteTuple sprites_front;
+    SpriteTuple sprites_front = default;
     [SerializeField] 
-    SpriteTuple sprites_back;
+    SpriteTuple sprites_back = default;
     [SerializeField] 
-    SpriteTuple sprites_side;
+    SpriteTuple sprites_side = default;
     
     SpriteRenderer spriteRenderer;
     SpriteTuple currentSpriteTuple;

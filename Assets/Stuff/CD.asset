@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CD
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 0601bb1cff8c3b44ba19c858665e2885, type: 3}
-  sizeMultiplier: 1
+  sizeMultiplier: 0.3

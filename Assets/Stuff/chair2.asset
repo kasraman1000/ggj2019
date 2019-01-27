@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: chair2
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 3dfcb94e635d32a46822ec84f3c2d4e2, type: 3}
-  sizeMultiplier: 1
+  sizeMultiplier: 0.5
