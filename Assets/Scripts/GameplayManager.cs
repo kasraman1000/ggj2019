@@ -87,7 +87,8 @@ public class GameplayManager : MonoBehaviour {
     }
 
     private void OnCarCollision(Collision2D collision) {
-        Debug.LogWarning("Car collided! OH NOES!!");
+        var hitStuff = collision.collider.GetComponent<Stuff>();
+        StartCoroutine(gameOverRoutine(hitStuff));
     }
 
     [ContextMenu("expandHouse")]
@@ -126,20 +127,35 @@ public class GameplayManager : MonoBehaviour {
         pauseWorld(false);
     }
 
+    IEnumerator gameOverRoutine(Stuff hitStuff) {
+        pauseWorld(true);
+        
+        
+//        var houseBounds = House.houseBounds;
+//        houseBounds.Expand(2f);
+//        var camHeight = houseBounds.extents.y;
+//        
+//        cameraManager.lerpTo(houseBounds.center, 2f);
+//        cameraManager.zoomToSize(camHeight, 2f);
+//        
+//        yield return new WaitForSecondsRealtime(3f);
+
+
+        var bounds = hitStuff.GetComponent<SpriteRenderer>().bounds;
+        var camTarget = bounds.center;
+        var camSize = bounds.extents.y;
+        
+        cameraManager.lerpTo(camTarget, 2f);
+        cameraManager.zoomToSize(camSize, 2f);
+        
+        yield return new WaitForSecondsRealtime(3f);
+        
+        Debug.Log("BOOM!");
+    }
+    
+
     void pauseWorld(bool pause) {
         Time.timeScale = pause ? 0 : 1;
-
-//        paused = pause;
-//        person.enabled = !pause;
-//
-//        var drones = GameObject.FindObjectsOfType<Drone>();
-//        foreach (var drone in drones) {
-//            drone.enabled = !pause;
-//        }
-//
-//        foreach (var car in GameObject.FindObjectsOfType<Car>()) {
-//            car.enabled = !pause;
-//        }
     }
 
 }
