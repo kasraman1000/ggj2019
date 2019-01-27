@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour {
 
@@ -25,6 +26,7 @@ public class GameplayManager : MonoBehaviour {
     [SerializeField] House House = null;
     [SerializeField] CameraManager cameraManager = null;
     [SerializeField] Person person = null;
+    [SerializeField] Explosion explosion = null;
 
     bool paused;
 
@@ -87,8 +89,7 @@ public class GameplayManager : MonoBehaviour {
     }
 
     private void OnCarCollision(Collision2D collision) {
-        var hitStuff = collision.collider.GetComponent<Stuff>();
-        StartCoroutine(gameOverRoutine(hitStuff));
+        StartCoroutine(gameOverRoutine(collision));
     }
 
     [ContextMenu("expandHouse")]
@@ -127,7 +128,9 @@ public class GameplayManager : MonoBehaviour {
         pauseWorld(false);
     }
 
-    IEnumerator gameOverRoutine(Stuff hitStuff) {
+    IEnumerator gameOverRoutine(Collision2D collision) {
+       var hitStuff = collision.collider.GetComponent<Stuff>();
+        
         pauseWorld(true);
         
         
@@ -143,14 +146,48 @@ public class GameplayManager : MonoBehaviour {
 
         var bounds = hitStuff.GetComponent<SpriteRenderer>().bounds;
         var camTarget = bounds.center;
+        bounds.Expand(bounds.extents.y * 0.2f);
         var camSize = bounds.extents.y;
         
         cameraManager.lerpTo(camTarget, 2f);
         cameraManager.zoomToSize(camSize, 2f);
         
         yield return new WaitForSecondsRealtime(3f);
+
+        var currentZ = -1f;
+        for (int i = 0; i < 10; i++) {
+            var boom = Instantiate(explosion);
+
+            if (i == 0) {
+
+                var contact = collision.GetContact(0);
+                var pos = contact.point;
+                var newPos = new Vector3(pos.x, pos.y, currentZ);
+                boom.transform.position = newPos;
+                
+                yield return new WaitForSecondsRealtime(0.5f);
+                    
+                
+            } else {
+                var pos = new Vector2(
+                    Mathf.Lerp(bounds.min.x, bounds.max.x, Random.Range(0f, 1f)),
+                    Mathf.Lerp(bounds.min.y, bounds.max.y, Random.Range(0f, 1f))
+                );
+                
+                var newPos = new Vector3(pos.x, pos.y, currentZ);
+                boom.transform.position = newPos;
+                
+                yield return new WaitForSecondsRealtime(0.1f);
+            }
+
+            boom.startExplosion();
+            
+            currentZ -= float.Epsilon;
+        }
         
-        Debug.Log("BOOM!");
+        yield return new WaitForSecondsRealtime(2f);
+
+        SceneManager.LoadScene("Intro Scene");
     }
     
 

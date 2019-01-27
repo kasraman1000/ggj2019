@@ -445,6 +445,8 @@ MonoBehaviour:
   House: {fileID: 63861657}
   cameraManager: {fileID: 101594833}
   person: {fileID: 60352952}
+  explosion: {fileID: 7518259717614537396, guid: 9ffe07596120e764da3f95e5b10bf1dc,
+    type: 3}
 --- !u!4 &343308339
 Transform:
   m_ObjectHideFlags: 0

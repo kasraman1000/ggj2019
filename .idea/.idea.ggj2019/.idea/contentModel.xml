@@ -6,6 +6,9 @@
     <e p="C:\Users\Kasra\Desktop\ggj2019actualfolder\ggj2019" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="CameraManager.cs" t="Include" />
+        <e p="Explosion.cs" t="Include" />
+        <e p="IntroManager.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="Car.cs" t="Include" />
           <e p="CarSpawner.cs" t="Include" />
