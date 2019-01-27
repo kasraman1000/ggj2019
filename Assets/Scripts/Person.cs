@@ -45,6 +45,8 @@ public class Person : MonoBehaviour {
 
     private Highlight Highlight;
 
+    public bool isHolding => Holding != null;
+
     void OnValidate() {
         if (StuffHoldingAnchor == null) {
             Debug.LogError("no stuffholdingachor assigned", this);

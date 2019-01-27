@@ -27,8 +27,12 @@ public class GameplayManager : MonoBehaviour {
     [SerializeField] CameraManager cameraManager = null;
     [SerializeField] Person person = null;
     [SerializeField] Explosion explosion = null;
+    [SerializeField] Stuff[] startingThings;
+    
 
     bool paused;
+
+    int dronesRemaining = 0;
 
 
     void OnValidate() {
@@ -49,6 +53,10 @@ public class GameplayManager : MonoBehaviour {
         cameraManager.followObject(person.gameObject);
     }
 
+    void Start() {
+        StartCoroutine(gameplayRoutine());
+    }
+
     // Update is called once per frame
     void Update() {
         if (Input.GetKeyDown(KeyCode.A)) {
@@ -60,6 +68,10 @@ public class GameplayManager : MonoBehaviour {
     }
 
     void UpdateDrones() {
+        if (dronesRemaining <= 0) {
+            return;
+        }
+        
         DroneTimer += Time.deltaTime;
 
         if (DroneTimer < DroneDelay) {
@@ -68,6 +80,11 @@ public class GameplayManager : MonoBehaviour {
 
         DroneTimer -= DroneDelay;
 
+        makeDrone();
+        dronesRemaining--;
+    }
+
+    void makeDrone() {
         var stuff = stuffManager.makeRandomStuff();
         var dronePos = Vector2.Lerp(DroneSpawnPoint1.position, DroneSpawnPoint2.position, Random.Range(0f, 1f));
         var drone = Instantiate(dronePrefab, dronePos, Quaternion.identity);
@@ -92,13 +109,58 @@ public class GameplayManager : MonoBehaviour {
         StartCoroutine(gameOverRoutine(collision));
     }
 
+
+
+    IEnumerator gameplayRoutine() {
+        // Starting part
+        /*while (true) {
+            yield return null;
+
+            bool allMovedIn = true;
+            var houseBounds = House.houseBounds;
+            foreach (var stuff in startingThings) {
+                if (!houseBounds.Contains(new Vector3(stuff.transform.position.x, stuff.transform.position.y, houseBounds.center.z) )) {
+                    allMovedIn = false;
+                }
+            }
+
+            if (allMovedIn && !person.isHolding) {
+                Debug.Log("All stuff moved in!");
+                break;
+                
+            }
+        }*/
+
+
+        while (true) {
+            var level = 1;
+
+            dronesRemaining = 10 + (level - 1) * 5;
+            DroneDelay = 30 / dronesRemaining;
+            
+            // Level stuff
+            while (dronesRemaining > 0) {
+                yield return null;
+            }
+        
+            yield return new WaitForSecondsRealtime(10f);
+
+            yield return expandHouseRoutine();
+
+        }        
+    }
+    
+    
+    
+    
+    
     [ContextMenu("expandHouse")]
     void expandHouse() {
         StartCoroutine(expandHouseRoutine());
     }
 
     IEnumerator expandHouseRoutine() {
-        const float growSize = 5;
+        const float growSize = 10;
         
         pauseWorld(true);
 
