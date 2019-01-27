@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3213062411915885496}
   - component: {fileID: 3213062411915885498}
   - component: {fileID: 2341468958897553666}
+  - component: {fileID: 149573167560327849}
   m_Layer: 8
   m_Name: The stuff Prefab
   m_TagString: Untagged
@@ -115,3 +116,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &149573167560327849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213062411915885499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660fe99a96e99c144956b08ca91e8320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReticlePrefab: {fileID: 2759605521529552383, guid: fd56003e08f2831439fbe24cfb34f50d,
+    type: 3}
+  Padding: {x: 0.5, y: 0.5}
