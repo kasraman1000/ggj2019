@@ -93,5 +93,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 420
-  scaleSpeed: 3
+  scaleSpeed: 5
   acceleration: 150
