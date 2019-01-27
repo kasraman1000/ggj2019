@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -23,35 +24,39 @@ public class House : MonoBehaviour {
     [SerializeField]
     private Floor Floor = null;
 
-    // Start is called before the first frame update
-    void Start() {
-
-    }
-
-    // Update is called once per frame
-    void Update() {
-
-    }
-
-    void ExpandNorth(float units) {
+    public void ExpandNorth(float units) {
         North.Move(Vector2.up * units);
         NorthEast.Grow(Vector2.up * units);
         West.Grow(Vector2.up * units);
         Floor.Grow(Vector2.up * units);
     }
 
-    void ExpandWest(float units) {
+    public void ExpandWest(float units) {
         North.Grow(Vector2.left * units);
         West.Move(Vector2.left * units);
         South.Grow(Vector2.left * units);
         Floor.Grow(Vector2.left * units);
     }
 
-    void ExpandSouth(float units) {
+    public void ExpandSouth(float units) {
         South.Move(Vector2.down * units);
         SouthEast.Grow(Vector2.down * units);
         West.Grow(Vector2.down * units);
         Floor.Grow(Vector2.down * units);
+    }
+
+    public Bounds houseBounds {
+        get {
+            var bounds = new Bounds();
+
+            bounds.Encapsulate(North.bounds);
+            bounds.Encapsulate(South.bounds);
+            bounds.Encapsulate(West.bounds);
+            bounds.Encapsulate(NorthEast.bounds);
+            bounds.Encapsulate(SouthEast.bounds);
+
+            return bounds;
+        }
     }
 
 #if UNITY_EDITOR

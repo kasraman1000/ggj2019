@@ -285,6 +285,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67798153a40b91408da6fb5aa374590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &101594833 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 569691115850958621, guid: 3027210bb79bb7549bf9855c59c9f5a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 569691115749388748}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5fc79d8445359438a765b8f54123fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &306099989
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +443,7 @@ MonoBehaviour:
     type: 3}
   CarSpawner: {fileID: 58202839}
   House: {fileID: 63861657}
-  cameraManager: {fileID: 2089520905}
+  cameraManager: {fileID: 101594833}
   person: {fileID: 60352952}
 --- !u!4 &343308339
 Transform:
@@ -769,7 +781,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2089520904
+--- !u!1001 &569691115749388748
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -838,15 +850,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3027210bb79bb7549bf9855c59c9f5a5, type: 3}
---- !u!114 &2089520905 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 569691115850958621, guid: 3027210bb79bb7549bf9855c59c9f5a5,
-    type: 3}
-  m_PrefabInstance: {fileID: 2089520904}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b5fc79d8445359438a765b8f54123fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
